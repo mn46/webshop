@@ -10,7 +10,7 @@ const CategoriesNavigation = () => {
   ];
 
   return (
-    <ul>
+    <ul className="flex flex-col lg:flex-row gap-8 uppercase">
       {menuItemsList.map((item) => (
         <li>
           <MenuItem menuItem={item} />
