@@ -8,7 +8,7 @@ interface Props {
 const IconButton: React.FC<Props> = ({ icon }) => {
   return (
     <button>
-      <FontAwesomeIcon icon={icon.icon} />
+      <FontAwesomeIcon icon={icon.icon} size="xl" className="text-gray-800" />
     </button>
   );
 };
