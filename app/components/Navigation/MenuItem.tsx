@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import type { MenuItem as MenuItemType } from "~/types";
 
 interface Props {
@@ -9,13 +9,12 @@ interface Props {
 const MenuItem: React.FC<Props> = ({ menuItem }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    if (typeof window === undefined) return;
-    const url = window.location.href;
-    console.log("url", url);
-    const isInUrl = url.includes(menuItem.link);
+    const isInUrl = pathname === menuItem.link;
     setIsActive(isInUrl);
-  }, [window?.location.href]);
+  }, [pathname]);
 
   return (
     <Link
