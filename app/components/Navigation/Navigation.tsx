@@ -14,6 +14,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const icons = [
     { icon: faMagnifyingGlass, altText: "search" },
@@ -22,12 +23,13 @@ const Navigation: React.FC = () => {
   ];
 
   const handleToggleMenu = () => {
+    setIsMenuActive((prev) => !prev);
     setIsMenuOpen((prev) => !prev);
   };
 
   return (
     <>
-      <div className="p-2 flex justify-between items-center">
+      <div className="px-2 flex justify-between items-center">
         <Link to="/">
           <img src={Logo} />
         </Link>
@@ -36,17 +38,22 @@ const Navigation: React.FC = () => {
           <CategoriesNavigation />
         </div>
 
-        <div className="space-x-6">
+        <div className="flex gap-4 h-full">
           {icons.map((icon) => (
             <IconButton icon={icon} />
           ))}
 
-          <button className="lg:hidden" onClick={handleToggleMenu}>
+          <button
+            onClick={handleToggleMenu}
+            className={`${
+              isMenuActive ? "bg-green-950" : "bg-transparent"
+            } px-2 pt-3 pb-5 lg:hidden`}
+          >
             {isMenuOpen ? (
               <FontAwesomeIcon
                 icon={faXmark}
                 size="xl"
-                className="text-gray-800"
+                className="text-white"
               />
             ) : (
               <FontAwesomeIcon
