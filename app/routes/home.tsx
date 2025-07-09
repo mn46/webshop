@@ -1,6 +1,8 @@
 import type { Route } from "./+types/home";
 import { HomePageSection } from "../components/homepage/HomepageSection";
 import PageLayout from "~/layouts/PageLayout";
+import { useEffect, useState } from "react";
+import type { Product } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,9 +12,17 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[] | null>(null);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   return (
     <PageLayout>
-      <HomePageSection />
+      <HomePageSection productsList={products} />
     </PageLayout>
   );
 }
