@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { HomePageSection } from "../components/homepage/HomepageSection";
 import PageLayout from "~/layouts/PageLayout";
 
 export function meta({}: Route.MetaArgs) {
@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <PageLayout>
-      <Welcome />
+      <HomePageSection />
     </PageLayout>
   );
 }
