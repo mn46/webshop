@@ -7,5 +7,5 @@ export type MenuItem = {
 
 export type IconType = {
   icon: IconDefinition;
-  altText: string;
+  title: string;
 };

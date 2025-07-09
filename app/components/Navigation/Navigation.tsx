@@ -17,9 +17,9 @@ const Navigation: React.FC = () => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const icons = [
-    { icon: faMagnifyingGlass, altText: "search" },
-    { icon: faHeart, altText: "favourites" },
-    { icon: faCartShopping, altText: "shopping cart" },
+    { icon: faMagnifyingGlass, title: "search" },
+    { icon: faHeart, title: "favourites" },
+    { icon: faCartShopping, title: "shopping cart" },
   ];
 
   const handleToggleMenu = () => {
@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
 
         <div className="flex gap-4 h-full">
           {icons.map((icon) => (
-            <IconButton icon={icon} />
+            <IconButton icon={icon} key={icon.title} />
           ))}
 
           <button
@@ -54,12 +54,14 @@ const Navigation: React.FC = () => {
                 icon={faXmark}
                 size="xl"
                 className="text-white"
+                title="close"
               />
             ) : (
               <FontAwesomeIcon
                 icon={faBars}
                 size="xl"
                 className="text-gray-800"
+                title="menu"
               />
             )}
           </button>

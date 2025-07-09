@@ -24,6 +24,7 @@ const IconButton: React.FC<Props> = ({ icon }) => {
         icon={icon.icon}
         size="xl"
         className={isActive ? "text-white" : "text-gray-800"}
+        title={icon.title}
       />
     </button>
   );
