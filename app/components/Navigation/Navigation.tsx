@@ -28,7 +28,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <>
+    <nav>
       <div className="px-2 flex justify-between items-center">
         <Link to="/">
           <img src={Logo} />
@@ -75,7 +75,7 @@ const Navigation: React.FC = () => {
       >
         <CategoriesNavigation />
       </div>
-    </>
+    </nav>
   );
 };
 
