@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import { HomePageSection } from "../components/homepage/HomepageSection";
 import PageLayout from "~/layouts/PageLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Product } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
@@ -20,9 +20,14 @@ export default function Home() {
       .then((data) => setProducts(data));
   }, []);
 
+  const bestRated = useMemo(
+    () => products?.filter((product) => product.rating.rate > 3),
+    [products]
+  );
+
   return (
     <PageLayout>
-      <HomePageSection productsList={products} />
+      <HomePageSection headline="top rated" productsList={bestRated} />
     </PageLayout>
   );
 }
