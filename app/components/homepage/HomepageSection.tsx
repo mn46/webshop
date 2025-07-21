@@ -13,11 +13,11 @@ export const HomePageSection: React.FC<Props> = ({
 }) => {
   return (
     <section className="flex flex-col">
-      <h2 className="uppercase text-2xl border-b-2 border-b-green-950">
+      <h2 className="uppercase text-2xl border-b-2 border-b-green-800 w-max">
         {headline}
       </h2>
 
-      <div className="grid grid-flow-col gap-x-10">
+      <div className="grid grid-flow-col gap-x-10 mt-10">
         {productsList?.map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
