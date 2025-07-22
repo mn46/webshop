@@ -28,7 +28,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav>
+    <nav className="fixed left-0 top-0" style={{ width: "100vw" }}>
       <div className="px-2 flex justify-between items-center">
         <Link to="/">
           <img src={Logo} />
