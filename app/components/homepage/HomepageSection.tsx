@@ -17,7 +17,7 @@ export const HomePageSection: React.FC<Props> = ({
         {headline}
       </h2>
 
-      <div className="grid grid-flow-col gap-x-10 mt-10  overflow-auto">
+      <div className="grid grid-flow-col gap-x-10 mt-10  overflow-auto px-10">
         {productsList?.map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}

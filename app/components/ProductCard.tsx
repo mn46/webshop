@@ -6,13 +6,15 @@ interface Props {
 
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
-    <div className="flex flex-col min-w-96">
-      <div className="flex items-center justify-center">
-        <img src={product.image} className="h-96 w-auto" />
+    <div className="grid grid-flow-row min-w-96">
+      <div className="h-96 flex items-center justify-center">
+        <img src={product.image} className="h-80 w-auto" />
       </div>
-      <div className="grid grid-flow-col items-center">
+      <div className="h-24 grid grid-cols-[80%_20%]">
         <p className="bg-gray-800 text-white p-2">{product.title}</p>
-        <p className="bg-green-800 text-white p-2 h-full">${product.price}</p>
+        <p className=" text-white bg-green-800 p-2 text-center">
+          ${product.price}
+        </p>
       </div>
     </div>
   );
