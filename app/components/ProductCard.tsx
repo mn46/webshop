@@ -7,7 +7,7 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className="grid grid-flow-row min-w-96">
-      <div className="h-96 flex items-center justify-center">
+      <div className="h-96 flex items-center justify-center bg-white">
         <img src={product.image} className="h-80 w-auto" />
       </div>
       <div className="h-24 grid grid-cols-[80%_20%]">

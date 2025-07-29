@@ -27,7 +27,9 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <HomePageSection headline="top rated" productsList={bestRated} />
+      <div className="bg-gray-300 py-10">
+        <HomePageSection headline="top rated" productsList={bestRated} />
+      </div>
     </PageLayout>
   );
 }
