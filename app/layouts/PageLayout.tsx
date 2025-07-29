@@ -9,7 +9,7 @@ const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <main>
       <Navigation />
-      <div className="mt-20">{children}</div>
+      <div className="mt-14">{children}</div>
     </main>
   );
 };
