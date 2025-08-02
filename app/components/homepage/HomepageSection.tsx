@@ -1,6 +1,6 @@
-import Navigation from "~/components/Navigation/Navigation";
 import type { Product } from "~/types";
 import ProductCard from "../ProductCard";
+import CardSkeleton from "../skeletons/CardSkeleton";
 
 interface Props {
   headline: string;
@@ -18,9 +18,17 @@ export const HomePageSection: React.FC<Props> = ({
       </h2>
 
       <div className="grid grid-flow-col gap-x-10 mt-10  overflow-auto px-10">
-        {productsList?.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
+        {productsList ? (
+          productsList?.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
     </section>
   );
