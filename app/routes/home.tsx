@@ -25,10 +25,19 @@ export default function Home() {
     [products]
   );
 
+  const bestDeals = useMemo(
+    () => products?.filter((product) => product.price < 100),
+    [products]
+  );
+
   return (
     <PageLayout>
       <div className="bg-gray-300 py-10">
         <HomePageSection headline="top rated" productsList={bestRated} />
+      </div>
+
+      <div className="py-10">
+        <HomePageSection headline="best deals" productsList={bestDeals} />
       </div>
     </PageLayout>
   );
