@@ -3,6 +3,7 @@ import { HomePageSection } from "../components/homepage/HomepageSection";
 import PageLayout from "~/layouts/PageLayout";
 import { useEffect, useMemo, useState } from "react";
 import type { Product } from "~/types";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -38,6 +39,12 @@ export default function Home() {
 
       <div className="py-10">
         <HomePageSection headline="best deals" productsList={bestDeals} />
+      </div>
+
+      <div className="flex items-center justify-center">
+        <Link to="/all-products" className="primary-btn">
+          See all products
+        </Link>
       </div>
     </PageLayout>
   );

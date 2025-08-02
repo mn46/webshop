@@ -7,7 +7,7 @@ interface Props {
 
 const PageLayout: React.FC<Props> = ({ children }) => {
   return (
-    <main>
+    <main className="pb-10">
       <Navigation />
       <div className="mt-14">{children}</div>
     </main>
