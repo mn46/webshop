@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { Product } from "~/types";
 
 interface Props {
@@ -6,7 +7,10 @@ interface Props {
 
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
-    <div className="grid grid-flow-row min-w-[90vw] md:min-w-96">
+    <Link
+      to={`/product/${product.id}`}
+      className="grid grid-flow-row min-w-[90vw] md:min-w-96"
+    >
       <div className="h-96 flex items-center justify-center bg-white">
         <img src={product.image} className="h-80 w-auto" />
       </div>
@@ -16,7 +20,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           ${product.price}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
