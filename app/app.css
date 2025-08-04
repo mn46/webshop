@@ -11,6 +11,12 @@
     padding: --spacing(3);
     color: var(--color-white);
   }
+
+  .secondary-btn {
+    background-color: var(--color-orange-400);
+    padding: --spacing(3);
+    color: var(--color-white);
+  }
 }
 
 html,
