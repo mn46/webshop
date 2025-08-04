@@ -16,7 +16,7 @@ const IconButton: React.FC<Props> = ({ icon }) => {
   return (
     <button
       className={`${
-        isActive ? "bg-green-950" : "bg-transparent"
+        isActive ? "bg-green-800" : "bg-transparent"
       } px-2 pt-3 pb-5`}
       onClick={toggleIsActive}
     >

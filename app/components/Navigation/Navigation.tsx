@@ -46,7 +46,7 @@ const Navigation: React.FC = () => {
           <button
             onClick={handleToggleMenu}
             className={`${
-              isMenuActive ? "bg-green-950" : "bg-transparent"
+              isMenuActive ? "bg-green-800" : "bg-transparent"
             } px-2 pt-3 pb-5 lg:hidden`}
           >
             {isMenuOpen ? (
@@ -71,7 +71,7 @@ const Navigation: React.FC = () => {
       <div
         className={`${
           isMenuOpen ? "block" : "hidden"
-        } lg:hidden fixed top-14 bg-green-950 w-full h-full pt-32`}
+        } lg:hidden fixed top-14 bg-green-800 w-full h-full pt-32`}
       >
         <CategoriesNavigation />
       </div>
