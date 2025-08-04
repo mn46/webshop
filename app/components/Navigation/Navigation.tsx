@@ -12,7 +12,11 @@ import IconButton from "./IconButton";
 import { useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Navigation: React.FC = () => {
+interface Props {
+  setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navigation: React.FC<Props> = ({ setIsCartOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
@@ -25,6 +29,10 @@ const Navigation: React.FC = () => {
   const handleToggleMenu = () => {
     setIsMenuActive((prev) => !prev);
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleToggleCartOpen = () => {
+    setIsCartOpen((prev) => !prev);
   };
 
   return (
@@ -40,7 +48,11 @@ const Navigation: React.FC = () => {
 
         <div className="flex gap-4 h-full">
           {icons.map((icon) => (
-            <IconButton icon={icon} key={icon.title} />
+            <IconButton
+              icon={icon}
+              key={icon.title}
+              onClickAction={handleToggleCartOpen}
+            />
           ))}
 
           <button

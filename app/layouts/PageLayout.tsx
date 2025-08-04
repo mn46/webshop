@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import Cart from "~/components/Cart";
 import Navigation from "~/components/Navigation/Navigation";
 
 interface Props {
@@ -6,9 +7,15 @@ interface Props {
 }
 
 const PageLayout: React.FC<Props> = ({ children }) => {
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   return (
     <main className="pb-10">
-      <Navigation />
+      <Navigation setIsCartOpen={setIsCartOpen} />
+      {isCartOpen && (
+        <div className="fixed bg-black/40 w-full h-full">
+          <Cart />
+        </div>
+      )}
       <div className="mt-14">{children}</div>
     </main>
   );

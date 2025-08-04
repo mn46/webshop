@@ -1,16 +1,19 @@
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import type { IconType } from "~/types";
 
 interface Props {
   icon: IconType;
+  onClickAction?: () => void;
 }
 
-const IconButton: React.FC<Props> = ({ icon }) => {
+const IconButton: React.FC<Props> = ({ icon, onClickAction }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const toggleIsActive = () => {
     setIsActive((prev) => !prev);
+    if (icon.title === "shopping cart" && onClickAction) onClickAction();
   };
 
   return (
