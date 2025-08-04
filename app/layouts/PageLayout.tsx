@@ -12,7 +12,7 @@ const PageLayout: React.FC<Props> = ({ children }) => {
     <main className="pb-10">
       <Navigation setIsCartOpen={setIsCartOpen} />
       {isCartOpen && (
-        <div className="fixed bg-black/40 w-full h-full">
+        <div className="fixed bg-black/40 w-full h-full flex justify-end">
           <Cart />
         </div>
       )}
