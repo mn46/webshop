@@ -27,6 +27,16 @@ const product = () => {
   };
 
   const handleAddToCart = () => {
+    const productsList = localStorage.getItem("products");
+    let newList = [];
+    if (!productsList) {
+      newList.push({ id: product.id, amount: amount });
+    } else {
+      const storedList = JSON.parse(productsList);
+      newList = [...storedList, { id: product.id, amount: amount }];
+    }
+    // what happens when this product is already in the cart?
+    localStorage.setItem("products", JSON.stringify(newList));
     return;
   };
 
