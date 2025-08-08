@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/product";
-import type { Product } from "~/types";
+import type { LocalStorageProducts, Product } from "~/types";
 import PageLayout from "~/layouts/PageLayout";
 import { useState } from "react";
 import Button from "~/components/Button";
@@ -32,10 +32,26 @@ const product = () => {
     if (!productsList) {
       newList.push({ id: product.id, amount: amount });
     } else {
-      const storedList = JSON.parse(productsList);
-      newList = [...storedList, { id: product.id, amount: amount }];
+      let storedList: LocalStorageProducts[] = JSON.parse(productsList);
+
+      const productOnList = storedList.find((item) => item.id === product.id);
+
+      if (productOnList !== undefined) {
+        storedList = storedList.map((item) => {
+          if (item.id === productOnList.id) {
+            item.amount++;
+            return item;
+          } else {
+            return item;
+          }
+        });
+
+        newList = storedList;
+      } else {
+        newList = [...storedList, { id: product.id, amount: amount }];
+      }
     }
-    // what happens when this product is already in the cart?
+
     localStorage.setItem("products", JSON.stringify(newList));
     return;
   };

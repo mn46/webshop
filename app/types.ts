@@ -22,3 +22,8 @@ export type Product = {
     count: number;
   };
 };
+
+export type LocalStorageProducts = {
+  id: number;
+  amount: number;
+};
