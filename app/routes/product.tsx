@@ -39,7 +39,7 @@ const product = () => {
       if (productOnList !== undefined) {
         storedList = storedList.map((item) => {
           if (item.id === productOnList.id) {
-            item.amount++;
+            item.amount = item.amount + amount;
             return item;
           } else {
             return item;
