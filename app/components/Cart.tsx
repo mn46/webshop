@@ -1,6 +1,4 @@
-import type { CartProduct, Product } from "~/types";
-import { useLoaderData } from "react-router";
-import { useEffect, useState } from "react";
+import type { CartProduct } from "~/types";
 
 const Cart = () => {
   const products = localStorage.getItem("products");

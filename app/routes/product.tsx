@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/product";
-import type { LocalStorageProducts, Product } from "~/types";
+import type { Product } from "~/types";
 import PageLayout from "~/layouts/PageLayout";
 import { useState } from "react";
 import Button from "~/components/Button";
