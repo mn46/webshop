@@ -23,6 +23,6 @@ export interface Product {
   };
 }
 
-export interface CartProduct extends Product {
+export interface CartProductInterface extends Product {
   amount: number;
 }

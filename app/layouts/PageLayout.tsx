@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import Cart from "~/components/Cart";
+import Cart from "~/components/cart/Cart";
 import Navigation from "~/components/Navigation/Navigation";
 
 interface Props {
