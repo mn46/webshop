@@ -25,7 +25,7 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
       <img src={product.image} className="w-full md:w-44 h-auto mb-4" />
 
       <div className="space-y-4">
