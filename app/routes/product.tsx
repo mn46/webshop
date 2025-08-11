@@ -62,7 +62,7 @@ const product = () => {
 
   return (
     <PageLayout>
-      <div className="mt-10 lg:mt-32 mx-10 lg:mx-24 xl:mx-64 grid grid-flow-row lg:grid-cols-2 justify-items-center">
+      <div className="pt-10 lg:pt-28 mx-10 lg:mx-24 xl:mx-64 grid grid-flow-row lg:grid-cols-2 justify-items-center">
         <div>
           <img src={product.image} className="w-[90vw] md:w-80 h-auto" />
         </div>
