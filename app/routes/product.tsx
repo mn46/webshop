@@ -30,7 +30,7 @@ const product = () => {
     const productsList = localStorage.getItem("products");
     let newList = [];
     if (!productsList) {
-      newList.push({ id: product.id, amount: amount });
+      newList.push({ ...product, amount: amount });
     } else {
       let storedList: LocalStorageProducts[] = JSON.parse(productsList);
 
@@ -48,7 +48,7 @@ const product = () => {
 
         newList = storedList;
       } else {
-        newList = [...storedList, { id: product.id, amount: amount }];
+        newList = [...storedList, { ...product, amount: amount }];
       }
     }
 

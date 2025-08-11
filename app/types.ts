@@ -10,7 +10,7 @@ export type IconType = {
   title: string;
 };
 
-export type Product = {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -21,9 +21,8 @@ export type Product = {
     rate: number;
     count: number;
   };
-};
+}
 
-export type LocalStorageProducts = {
-  id: number;
+export interface CartProduct extends Product {
   amount: number;
-};
+}
