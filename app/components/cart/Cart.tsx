@@ -20,18 +20,22 @@ const Cart = () => {
   }, [window]);
 
   useEffect(() => {
-    if (productsArray.length === 0) return;
-
     const callback = () => {
       const products = localStorage.getItem("products");
       const newProductsArray: CartProductInterface[] = products
         ? JSON.parse(products)
         : [];
 
-      const newTotal = newProductsArray
-        .map((item) => item.price * item.amount)
-        .reduce((acc, current) => acc + current);
-      setTotal(newTotal);
+      setProductsArray(newProductsArray);
+
+      if (newProductsArray.length === 0) {
+        setTotal(0);
+      } else {
+        const newTotal = newProductsArray
+          .map((item) => item.price * item.amount)
+          .reduce((acc, current) => acc + current);
+        setTotal(newTotal);
+      }
     };
 
     callback();
@@ -41,7 +45,7 @@ const Cart = () => {
     return () => {
       window.removeEventListener("storage", callback);
     };
-  }, [productsArray]);
+  }, []);
 
   return (
     <div className="bg-white w-full md:w-1/2 lg:w-1/3 p-10 overflow-y-auto">
@@ -54,7 +58,7 @@ const Cart = () => {
       )}
 
       <div className="flex items-center justify-between mb-10">
-        <h3 className="text-xl">Total: ${Math.round(total)}</h3>
+        <h3 className="text-xl">Total: ${parseFloat(total.toFixed(1))}</h3>
         <Button
           variant="primary-btn"
           onClick={() => {

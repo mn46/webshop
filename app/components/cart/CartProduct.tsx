@@ -18,7 +18,6 @@ const CartProduct: React.FC<Props> = ({ product }) => {
     if (typeof window === "undefined") return;
 
     const cartProducts = localStorage.getItem("products");
-    console.log("cartProducts", cartProducts);
     const productsArray: CartProductInterface[] = cartProducts
       ? JSON.parse(cartProducts)
       : [];
@@ -57,7 +56,18 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   };
 
   const handleRemoveFromCart = () => {
-    return;
+    const updatedCartProducts = cartProductsArray.filter(
+      (item) => item.id !== product.id
+    );
+
+    if (updatedCartProducts.length > 0) {
+      localStorage.setItem("products", JSON.stringify(updatedCartProducts));
+    } else {
+      localStorage.removeItem("products");
+    }
+
+    setAmount(0);
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
