@@ -2,7 +2,7 @@ import type { CartProductInterface } from "~/types";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   product: CartProductInterface;
@@ -10,14 +10,50 @@ interface Props {
 
 const CartProduct: React.FC<Props> = ({ product }) => {
   const [amount, setAmount] = useState<number>(product.amount);
+  const [cartProductsArray, setCartProductsArray] = useState<
+    CartProductInterface[]
+  >([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const cartProducts = localStorage.getItem("products");
+    console.log("cartProducts", cartProducts);
+    const productsArray: CartProductInterface[] = cartProducts
+      ? JSON.parse(cartProducts)
+      : [];
+
+    setCartProductsArray(productsArray);
+  }, [window]);
 
   const incrementProduct = () => {
+    const updatedCartProducts = cartProductsArray.map((item) => {
+      if (item.id === product.id) {
+        item.amount++;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    localStorage.setItem("products", JSON.stringify(updatedCartProducts));
     setAmount((prev) => (prev += 1));
+    window.dispatchEvent(new Event("storage"));
   };
 
   const decrementProduct = () => {
     if (amount === 1) return;
+
+    const updatedCartProducts = cartProductsArray.map((item) => {
+      if (item.id === product.id) {
+        item.amount--;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    localStorage.setItem("products", JSON.stringify(updatedCartProducts));
     setAmount((prev) => (prev -= 1));
+    window.dispatchEvent(new Event("storage"));
   };
 
   const handleRemoveFromCart = () => {
