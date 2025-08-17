@@ -1,7 +1,5 @@
 import type { CartProductInterface } from "~/types";
 import Button from "../Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 interface Props {
