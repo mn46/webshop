@@ -23,7 +23,7 @@ const ToasterProvider: React.FC<Props> = ({ children }) => {
     <ToasterContext.Provider value={{ showToast: showToast }}>
       {children}
       {isShown && (
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute bottom-4 right-4 animate-jump-out">
           <Toaster variant={variant} text={text} />
         </div>
       )}
