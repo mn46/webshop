@@ -2,10 +2,11 @@ import { useLoaderData } from "react-router";
 import type { Route } from "./+types/product";
 import type { Product } from "~/types";
 import PageLayout from "~/layouts/PageLayout";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "~/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { ToasterContext } from "~/context/ToasterContext";
 
 export async function loader({ params }: Route.ClientLoaderArgs) {
   const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
@@ -16,6 +17,8 @@ export async function loader({ params }: Route.ClientLoaderArgs) {
 const product = () => {
   const [amount, setAmount] = useState<number>(1);
   const product: Product = useLoaderData();
+
+  const { showToast } = useContext(ToasterContext);
 
   const incrementProduct = () => {
     setAmount((prev) => (prev += 1));
@@ -53,6 +56,7 @@ const product = () => {
     }
 
     localStorage.setItem("products", JSON.stringify(newList));
+    showToast("success", "Item was added to the cart.");
     return;
   };
 
