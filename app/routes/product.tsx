@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/product";
-import type { Product } from "~/types";
+import type { CartProductInterface, Product } from "~/types";
 import PageLayout from "~/layouts/PageLayout";
 import { useContext, useState } from "react";
 import Button from "~/components/Button";
@@ -18,7 +18,7 @@ const product = () => {
   const [amount, setAmount] = useState<number>(1);
   const product: Product = useLoaderData();
 
-  const { showToast } = useContext(ToasterContext);
+  const showToastContext = useContext(ToasterContext);
 
   const incrementProduct = () => {
     setAmount((prev) => (prev += 1));
@@ -35,7 +35,7 @@ const product = () => {
     if (!productsList) {
       newList.push({ ...product, amount: amount });
     } else {
-      let storedList: LocalStorageProducts[] = JSON.parse(productsList);
+      let storedList: CartProductInterface[] = JSON.parse(productsList);
 
       const productOnList = storedList.find((item) => item.id === product.id);
 
@@ -56,7 +56,7 @@ const product = () => {
     }
 
     localStorage.setItem("products", JSON.stringify(newList));
-    showToast("success", "Item was added to the cart.");
+    showToastContext?.showToast("success", "Item was added to the cart.");
     return;
   };
 
