@@ -16,14 +16,18 @@ const ToasterProvider: React.FC<Props> = ({ children }) => {
     setVariant(toastVariant);
     setText(toastText);
     setIsShown(true);
-    setTimeout(() => setIsShown(false), 5000);
+    setTimeout(() => {
+      setIsShown(false);
+    }, 5000);
   };
   return (
     <ToasterContext.Provider value={{ showToast: showToast }}>
       {children}
-      <div className="absolute bottom-2 right-2">
-        <Toaster variant={variant} text={text} />
-      </div>
+      {isShown && (
+        <div className="absolute bottom-4 right-4">
+          <Toaster variant={variant} text={text} />
+        </div>
+      )}
     </ToasterContext.Provider>
   );
 };
