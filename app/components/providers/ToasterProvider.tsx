@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState, type ReactNode } from "react";
-import { createPortal } from "react-dom";
+import React, { useState, type ReactNode } from "react";
 import { ToasterContext } from "~/context/ToasterContext";
 import Toaster from "../Toaster";
 
