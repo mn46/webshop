@@ -54,7 +54,12 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   };
 
   const handleRemoveFromCart = () => {
-    const updatedCartProducts = cartProductsArray.filter(
+    const cartProducts = localStorage.getItem("products");
+    const parsedCartProducts: CartProductInterface[] = cartProducts
+      ? JSON.parse(cartProducts)
+      : [];
+
+    const updatedCartProducts = parsedCartProducts.filter(
       (item) => item.id !== product.id
     );
 

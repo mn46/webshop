@@ -3,11 +3,12 @@
 @theme {
   --font-sans: "ABeeZee", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --animate-jump-out: jump-out 0.2s ease-out;
+  --animate-jump-in: jump-in 0.2s ease-out;
+  --animate-jump-out: jump-in 0.2s ease-out reverse;
 
-  @keyframes jump-out {
+  @keyframes jump-in {
     0% {
-      transform: translateY(200%);
+      transform: translateY(100%);
     }
     80% {
       transform: translateY(-50%);
