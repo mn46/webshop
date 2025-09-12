@@ -1,6 +1,7 @@
 import type { CartProductInterface } from "~/types";
 import Button from "../Button";
 import { useEffect, useState } from "react";
+import { getParsedLocalStorageItem } from "~/helpers/helpers";
 
 interface Props {
   product: CartProductInterface;
@@ -8,23 +9,12 @@ interface Props {
 
 const CartProduct: React.FC<Props> = ({ product }) => {
   const [amount, setAmount] = useState<number>(product.amount);
-  const [cartProductsArray, setCartProductsArray] = useState<
-    CartProductInterface[]
-  >([]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const cartProducts = localStorage.getItem("products");
-    const productsArray: CartProductInterface[] = cartProducts
-      ? JSON.parse(cartProducts)
-      : [];
-
-    setCartProductsArray(productsArray);
-  }, [window]);
 
   const incrementProduct = () => {
-    const updatedCartProducts = cartProductsArray.map((item) => {
+    const cartProducts =
+      getParsedLocalStorageItem<CartProductInterface>("products");
+
+    const updatedCartProducts = cartProducts.map((item) => {
       if (item.id === product.id) {
         item.amount++;
         return item;
@@ -40,7 +30,10 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   const decrementProduct = () => {
     if (amount === 1) return;
 
-    const updatedCartProducts = cartProductsArray.map((item) => {
+    const cartProducts =
+      getParsedLocalStorageItem<CartProductInterface>("products");
+
+    const updatedCartProducts = cartProducts.map((item) => {
       if (item.id === product.id) {
         item.amount--;
         return item;
@@ -54,12 +47,10 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   };
 
   const handleRemoveFromCart = () => {
-    const cartProducts = localStorage.getItem("products");
-    const parsedCartProducts: CartProductInterface[] = cartProducts
-      ? JSON.parse(cartProducts)
-      : [];
+    const cartProducts =
+      getParsedLocalStorageItem<CartProductInterface>("products");
 
-    const updatedCartProducts = parsedCartProducts.filter(
+    const updatedCartProducts = cartProducts.filter(
       (item) => item.id !== product.id
     );
 
