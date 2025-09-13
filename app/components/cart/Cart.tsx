@@ -1,9 +1,14 @@
 import type { CartProductInterface } from "~/types";
 import CartProduct from "./CartProduct";
 import Button from "../Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SetStateAction } from "react";
+import ClickOutsideWrapper from "../wrappers/ClickOutsideWrapper";
 
-const Cart = () => {
+interface Props {
+  setIsCartOpen: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const Cart: React.FC<Props> = ({ setIsCartOpen }) => {
   const [total, setTotal] = useState(0);
   const [productsArray, setProductsArray] = useState<CartProductInterface[]>(
     []
@@ -48,27 +53,34 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="bg-white w-full md:w-1/2 lg:w-1/3 p-10 overflow-y-auto">
-      {productsArray.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        productsArray.map((product) => (
-          <CartProduct product={product} key={product.id} />
-        ))
-      )}
+    <ClickOutsideWrapper
+      onClose={() => {
+        setIsCartOpen(false);
+      }}
+      className="flex justify-end"
+    >
+      <div className="bg-white w-full h-full md:w-1/2 lg:w-1/3 p-10 overflow-y-auto">
+        {productsArray.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          productsArray.map((product) => (
+            <CartProduct product={product} key={product.id} />
+          ))
+        )}
 
-      <div className="flex items-center justify-between mb-10">
-        <h3 className="text-xl">Total: ${parseFloat(total.toFixed(1))}</h3>
-        <Button
-          variant="primary-btn"
-          onClick={() => {
-            return;
-          }}
-        >
-          Go to checkout
-        </Button>
+        <div className="flex items-center justify-between mb-10">
+          <h3 className="text-xl">Total: ${parseFloat(total.toFixed(1))}</h3>
+          <Button
+            variant="primary-btn"
+            onClick={() => {
+              return;
+            }}
+          >
+            Go to checkout
+          </Button>
+        </div>
       </div>
-    </div>
+    </ClickOutsideWrapper>
   );
 };
 
