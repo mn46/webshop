@@ -42,7 +42,7 @@ export default function Home() {
       </div>
 
       <div className="flex items-center justify-center">
-        <Link to="/all-products" className="primary-btn">
+        <Link to="/products" className="primary-btn">
           See all products
         </Link>
       </div>
