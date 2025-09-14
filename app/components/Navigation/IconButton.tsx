@@ -5,7 +5,7 @@ import type { IconType } from "~/types";
 
 interface Props {
   icon: IconType;
-  onClickAction?: () => void;
+  onClickAction?: (() => void) | null;
 }
 
 const IconButton: React.FC<Props> = ({ icon, onClickAction }) => {
@@ -13,7 +13,7 @@ const IconButton: React.FC<Props> = ({ icon, onClickAction }) => {
 
   const toggleIsActive = () => {
     setIsActive((prev) => !prev);
-    if (icon.title === "shopping cart" && onClickAction) onClickAction();
+    if (onClickAction) onClickAction();
   };
 
   return (

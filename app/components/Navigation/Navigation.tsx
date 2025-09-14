@@ -14,17 +14,12 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navigation: React.FC<Props> = ({ setIsCartOpen }) => {
+const Navigation: React.FC<Props> = ({ setIsCartOpen, setIsSearchOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
-
-  const icons = [
-    { icon: faMagnifyingGlass, title: "search" },
-    { icon: faHeart, title: "favourites" },
-    { icon: faCartShopping, title: "shopping cart" },
-  ];
 
   const handleToggleMenu = () => {
     setIsMenuActive((prev) => !prev);
@@ -34,6 +29,24 @@ const Navigation: React.FC<Props> = ({ setIsCartOpen }) => {
   const handleToggleCartOpen = () => {
     setIsCartOpen((prev) => !prev);
   };
+
+  const handleToggleSearchOpen = () => {
+    setIsSearchOpen((prev) => !prev);
+  };
+
+  const icons = [
+    {
+      icon: faMagnifyingGlass,
+      title: "search",
+      action: handleToggleSearchOpen,
+    },
+    { icon: faHeart, title: "favourites", action: null },
+    {
+      icon: faCartShopping,
+      title: "shopping cart",
+      action: handleToggleCartOpen,
+    },
+  ];
 
   return (
     <nav className="fixed left-0 top-0 bg-white" style={{ width: "100vw" }}>
@@ -51,7 +64,7 @@ const Navigation: React.FC<Props> = ({ setIsCartOpen }) => {
             <IconButton
               icon={icon}
               key={icon.title}
-              onClickAction={handleToggleCartOpen}
+              onClickAction={icon.action}
             />
           ))}
 

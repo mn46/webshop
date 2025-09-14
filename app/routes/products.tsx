@@ -27,7 +27,7 @@ const products = () => {
 
   return (
     <PageLayout>
-      <section className="mt-20 flex flex-col mx-4 md:mx-10 lg:mx-34">
+      <section className="pt-10 flex flex-col mx-4 md:mx-10 lg:mx-34">
         <h2 className="uppercase text-2xl border-b-2 border-b-green-800 w-max">
           {category?.toUpperCase()}
         </h2>
