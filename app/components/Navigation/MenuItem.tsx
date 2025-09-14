@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useSearchParams } from "react-router";
 import type { MenuItem as MenuItemType } from "~/types";
 
 interface Props {
@@ -8,13 +8,15 @@ interface Props {
 
 const MenuItem: React.FC<Props> = ({ menuItem }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [searchParams] = useSearchParams();
 
   const { pathname } = useLocation();
+  const category = searchParams.get("category");
 
   useEffect(() => {
-    const isInUrl = pathname === menuItem.link;
+    const isInUrl = pathname === menuItem.link && menuItem.search === category;
     setIsActive(isInUrl);
-  }, [pathname]);
+  }, [pathname, category]);
 
   return (
     <Link
