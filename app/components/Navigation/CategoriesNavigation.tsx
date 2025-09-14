@@ -10,7 +10,7 @@ const CategoriesNavigation = () => {
       search: "womens-clothing",
     },
     { link: "/products", name: "jewelery", search: "jewelery" },
-    { link: "/products", name: "electronics", search: "electtronics" },
+    { link: "/products", name: "electronics", search: "electronics" },
   ];
 
   return (
