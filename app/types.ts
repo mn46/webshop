@@ -3,6 +3,7 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export type MenuItem = {
   link: string;
   name: string;
+  search: string;
 };
 
 export type IconType = {

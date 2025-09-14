@@ -2,11 +2,15 @@ import MenuItem from "./MenuItem";
 
 const CategoriesNavigation = () => {
   const menuItemsList = [
-    { link: "/products", name: "all products" },
-    { link: "/mens-clothing", name: "men's clothing" },
-    { link: "/womens-clothing", name: "women's clothing" },
-    { link: "/jewellery", name: "jewellery" },
-    { link: "/electronics", name: "electronics" },
+    { link: "/products", name: "all products", search: "all" },
+    { link: "/products", name: "men's clothing", search: "mens-clothing" },
+    {
+      link: "/products",
+      name: "women's clothing",
+      search: "womens-clothing",
+    },
+    { link: "/products", name: "jewelery", search: "jewelery" },
+    { link: "/products", name: "electronics", search: "electtronics" },
   ];
 
   return (

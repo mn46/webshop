@@ -42,7 +42,10 @@ export default function Home() {
       </div>
 
       <div className="flex items-center justify-center">
-        <Link to="/products" className="primary-btn">
+        <Link
+          to={{ pathname: "/products", search: "?category=all" }}
+          className="primary-btn"
+        >
           See all products
         </Link>
       </div>

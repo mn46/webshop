@@ -18,7 +18,7 @@ const MenuItem: React.FC<Props> = ({ menuItem }) => {
 
   return (
     <Link
-      to={menuItem.link}
+      to={{ pathname: menuItem.link, search: `?category=${menuItem.search}` }}
       className={isActive ? "border-b-2 border-b-black" : ""}
     >
       {menuItem.name}
