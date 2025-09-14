@@ -3,11 +3,11 @@ import MenuItem from "./MenuItem";
 const CategoriesNavigation = () => {
   const menuItemsList = [
     { link: "/products", name: "all products", search: "all" },
-    { link: "/products", name: "men's clothing", search: "mens-clothing" },
+    { link: "/products", name: "men's clothing", search: "men's clothing" },
     {
       link: "/products",
       name: "women's clothing",
-      search: "womens-clothing",
+      search: "women's clothing",
     },
     { link: "/products", name: "jewelery", search: "jewelery" },
     { link: "/products", name: "electronics", search: "electronics" },

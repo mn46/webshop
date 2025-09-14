@@ -1,5 +1,8 @@
 import type { Product } from "~/types";
 import { useLoaderData, useSearchParams } from "react-router";
+import CardSkeleton from "~/components/skeletons/CardSkeleton";
+import ProductCard from "~/components/ProductCard";
+import PageLayout from "~/layouts/PageLayout";
 
 export async function loader() {
   const res = await fetch(`https://fakestoreapi.com/products`);
@@ -8,44 +11,41 @@ export async function loader() {
 }
 
 const products = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const category = searchParams.get("category");
 
   const products: Product[] = useLoaderData();
 
   const getProductList = () => {
-    switch (category) {
-      case "all":
-        return products;
-        break;
-      case "mens-clothing":
-        return products.filter(
-          (product) => product.category === "men's clothing"
-        );
-        break;
-      case "womens-clothing":
-        return products.filter(
-          (product) => product.category === "women's clothing"
-        );
-        break;
-      case "jewelery":
-        return products.filter((product) => product.category === "jewelery");
-        break;
-      case "electronics":
-        return products.filter((product) => product.category === "electronics");
-        break;
-      default:
-        return products;
+    if (category === "all") {
+      return products;
+    } else {
+      return products.filter((product) => product.category === category);
     }
   };
 
   return (
-    <div>
-      {getProductList().map((product) => (
-        <p>{product.title}</p>
-      ))}
-    </div>
+    <PageLayout>
+      <section className="mt-20 flex flex-col mx-4 md:mx-10 lg:mx-34">
+        <h2 className="uppercase text-2xl border-b-2 border-b-green-800 w-max">
+          {category?.toUpperCase()}
+        </h2>
+        <div className="grid grid-flow-col grid-row-1 gap-x-10 mt-10  overflow-auto md:px-10">
+          {products ? (
+            getProductList().map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))
+          ) : (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          )}
+        </div>
+      </section>
+    </PageLayout>
   );
 };
 
