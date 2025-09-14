@@ -31,7 +31,7 @@ const products = () => {
         <h2 className="uppercase text-2xl border-b-2 border-b-green-800 w-max">
           {category?.toUpperCase()}
         </h2>
-        <div className="grid grid-flow-col grid-row-1 gap-x-10 mt-10  overflow-auto md:px-10">
+        <div className="grid grid-flow-col gap-x-10 mt-10  overflow-x-auto md:px-10">
           {products ? (
             getProductList().map((product) => (
               <ProductCard product={product} key={product.id} />
