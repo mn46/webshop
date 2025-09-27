@@ -31,16 +31,17 @@ const search = () => {
     <PageLayout>
       <section className="pt-10 flex flex-col mx-4 md:mx-10 lg:mx-34">
         <h2 className="uppercase text-2xl border-b-2 border-b-green-800 w-max">
-          Search result
+          Search results
         </h2>
+        <h3 className="text-xl mt-10">Showing results for "{search}"</h3>
         <div className="grid grid-flow-col gap-x-10 mt-10  overflow-x-auto md:px-10">
           {products ? (
-            searchResults.map((product) =>
-              product ? (
+            searchResults.length > 0 ? (
+              searchResults.map((product) => (
                 <ProductCard product={product} key={product?.id} />
-              ) : (
-                <p>Looks like this product does not exst.</p>
-              )
+              ))
+            ) : (
+              <p>There are no results matching your search.</p>
             )
           ) : (
             <>
