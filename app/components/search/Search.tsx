@@ -16,10 +16,10 @@ const Search: React.FC<Props> = ({ setIsSearchOpen }) => {
     >
       <Form
         action="/search"
-        className="grid grid-rows-1 grid-cols-[1fr_auto] items-center justify-center px-10 md:px-52 mt-32"
+        className="grid gap-10 md:gap-0 md:grid-rows-1 md:grid-cols-[1fr_auto] items-center md:justify-center px-10 md:px-52 mt-32"
         onSubmit={() => setIsSearchOpen(false)}
       >
-        <input name="search" className="bg-white h-full p-2"></input>
+        <input name="search" className="bg-white h-14 md:h-full p-2"></input>
         <Button variant="primary-btn" type="submit">
           Search
         </Button>
