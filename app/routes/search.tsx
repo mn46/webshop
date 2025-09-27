@@ -34,7 +34,7 @@ const search = () => {
           Search results
         </h2>
         <h3 className="text-xl mt-10">Showing results for "{search}"</h3>
-        <div className="grid grid-flow-col gap-x-10 mt-10  overflow-x-auto md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 md:px-10">
           {products ? (
             searchResults.length > 0 ? (
               searchResults.map((product) => (
