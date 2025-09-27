@@ -13,6 +13,8 @@ const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <main className="pb-10">
       <Navigation
+        isCartOpen={isCartOpen}
+        isSearchOpen={isSearchOpen}
         setIsCartOpen={setIsCartOpen}
         setIsSearchOpen={setIsSearchOpen}
       />

@@ -6,13 +6,14 @@ import type { IconType } from "~/types";
 interface Props {
   icon: IconType;
   onClickAction?: (() => void) | null;
+  isActive: boolean;
 }
 
-const IconButton: React.FC<Props> = ({ icon, onClickAction }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+const IconButton: React.FC<Props> = ({ icon, onClickAction, isActive }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(isActive);
 
-  const toggleIsActive = () => {
-    setIsActive((prev) => !prev);
+  const toggleIsOpen = () => {
+    setIsOpen((prev) => !prev);
     if (onClickAction) onClickAction();
   };
 
@@ -21,7 +22,7 @@ const IconButton: React.FC<Props> = ({ icon, onClickAction }) => {
       className={`${
         isActive ? "bg-green-800" : "bg-transparent"
       } px-2 pt-3 pb-5`}
-      onClick={toggleIsActive}
+      onClick={toggleIsOpen}
     >
       <FontAwesomeIcon
         icon={icon.icon}

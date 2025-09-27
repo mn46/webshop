@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import Logo from "../../../src/webshop-logo.svg";
 import CategoriesNavigation from "./CategoriesNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,13 +13,22 @@ import { useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
+  isCartOpen: boolean;
+  isSearchOpen: boolean;
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navigation: React.FC<Props> = ({ setIsCartOpen, setIsSearchOpen }) => {
+const Navigation: React.FC<Props> = ({
+  isCartOpen,
+  isSearchOpen,
+  setIsCartOpen,
+  setIsSearchOpen,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
+
+  const { pathname } = useLocation();
 
   const handleToggleMenu = () => {
     setIsMenuActive((prev) => !prev);
@@ -39,12 +48,19 @@ const Navigation: React.FC<Props> = ({ setIsCartOpen, setIsSearchOpen }) => {
       icon: faMagnifyingGlass,
       title: "search",
       action: handleToggleSearchOpen,
+      isActive: isSearchOpen,
     },
-    { icon: faHeart, title: "favourites", action: null },
+    {
+      icon: faHeart,
+      title: "favourites",
+      action: null,
+      isActive: pathname.includes("favourites"),
+    },
     {
       icon: faCartShopping,
       title: "shopping cart",
       action: handleToggleCartOpen,
+      isActive: isCartOpen,
     },
   ];
 
@@ -65,6 +81,7 @@ const Navigation: React.FC<Props> = ({ setIsCartOpen, setIsSearchOpen }) => {
               icon={icon}
               key={icon.title}
               onClickAction={icon.action}
+              isActive={icon.isActive}
             />
           ))}
 
