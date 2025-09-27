@@ -26,6 +26,7 @@ const Search: React.FC<Props> = ({ setIsSearchOpen }) => {
       <Form
         action="/search"
         className="grid grid-rows-1 grid-cols-[1fr_auto] items-center justify-center px-10 md:px-52 mt-32"
+        onSubmit={() => setIsSearchOpen(false)}
       >
         <input
           name="search"
