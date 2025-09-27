@@ -9,7 +9,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="grid grid-flow-row min-w-[90vw] md:min-w-96"
+      className="grid grid-flow-row min-w-[90vw] md:min-w-96 md:max-w-[30rem]"
     >
       <div className="h-96 flex items-center justify-center bg-white">
         <img src={product.image} className="h-80 w-auto" />
