@@ -4,7 +4,7 @@ import CardSkeleton from "~/components/skeletons/CardSkeleton";
 import PageLayout from "~/layouts/PageLayout";
 import type { Product } from "~/types";
 
-export async function loader() {
+export async function clientLoader() {
   const res = await fetch(`https://fakestoreapi.com/products`);
   if (!res.ok) {
     throw new Response("API error", { status: res.status });

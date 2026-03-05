@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { ToasterContext } from "~/context/ToasterContext";
 
-export async function loader({ params }: Route.ClientLoaderArgs) {
+export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
   if (!res.ok) {
     throw new Response("API error", { status: res.status });
