@@ -10,6 +10,9 @@ import { ToasterContext } from "~/context/ToasterContext";
 
 export async function loader({ params }: Route.ClientLoaderArgs) {
   const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+  if (!res.ok) {
+    throw new Response("API error", { status: res.status });
+  }
   const product: Product = await res.json();
   return product;
 }
